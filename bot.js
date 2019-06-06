@@ -58,7 +58,7 @@ client.on('ready', () => {
     }
 
     log("Info", `${client.user.tag} connected`);
-    
+
 });
 
 client.on('message', async message => {
@@ -130,7 +130,7 @@ client.on('message', async message => {
         if (command == element.command) {
             commandChannel.send(element.reminder);
             messageChannel.send(element.message).then(function (message) {
-                message.react(':cowboy:');
+                message.react('586061148236021780');
               });
             insertShoutboxMessage(element.shoutbox);
             log("Info", `${message.member.user.tag} used the !${element.command} command`);
