@@ -130,7 +130,7 @@ client.on('message', async message => {
 
             commandChannel.send(element.reminder);
             messageChannel.send(element.message);
-            insertShoutboxMessage(element.message);
+            insertShoutboxMessage(element.shoutbox);
 
             log("Info", `${message.member.user.tag} used the !${element.command} command`);
             return;
