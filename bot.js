@@ -58,6 +58,7 @@ client.on('ready', () => {
     }
 
     log("Info", `${client.user.tag} connected`);
+    
 });
 
 client.on('message', async message => {
@@ -136,6 +137,7 @@ client.on('message', async message => {
             return;
         }
     });
+
 });
 
 function hasUpdatesRole(member) {
