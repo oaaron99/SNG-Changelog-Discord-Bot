@@ -102,7 +102,7 @@ client.on('message', async message => {
 
     if (command == "commands" || command == "cmds") {
 
-        let commandList = "";
+        let commandList = "!commands, !updates, ";
         config.commands.forEach(element => {
             commandList += "!" + element.command + ", ";
         });
