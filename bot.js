@@ -31,7 +31,7 @@ con.connect(function(err) {
 
 client.on('ready', () => {
 
-    client.user.setActivity('for commands', { type: 'WATCHING' })
+    client.user.setActivity('for updates', { type: 'WATCHING' })
 
     guild = client.guilds.first();
     if (guild == null) {
