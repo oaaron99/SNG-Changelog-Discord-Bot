@@ -127,12 +127,11 @@ client.on('message', async message => {
 
     config.commands.forEach(element => {
         if (command == element.command) {
-
             commandChannel.send(element.reminder);
-            let tempMessage = messageChannel.send(element.message);
-            tempMessage.react(':cowboy:');
+            messageChannel.send(element.message).then(function (message) {
+                message.react(':cowboy:');
+              });
             insertShoutboxMessage(element.shoutbox);
-
             log("Info", `${message.member.user.tag} used the !${element.command} command`);
             return;
         }
