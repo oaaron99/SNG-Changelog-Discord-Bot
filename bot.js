@@ -130,7 +130,7 @@ client.on('message', async message => {
         if (command == element.command) {
             commandChannel.send(element.reminder);
             messageChannel.send(element.message).then(function (message) {
-                message.react('586061148236021780');
+                message.react(message.guild.emojis.get('586061148236021780');
               });
             insertShoutboxMessage(element.shoutbox);
             log("Info", `${message.member.user.tag} used the !${element.command} command`);
