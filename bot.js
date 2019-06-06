@@ -129,7 +129,8 @@ client.on('message', async message => {
         if (command == element.command) {
 
             commandChannel.send(element.reminder);
-            messageChannel.send(element.message);
+            let tempMessage = messageChannel.send(element.message);
+            tempMessage.react(':cowboy:');
             insertShoutboxMessage(element.shoutbox);
 
             log("Info", `${message.member.user.tag} used the !${element.command} command`);
