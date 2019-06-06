@@ -9,19 +9,24 @@ let commandChannel = null;
 let updatesRoles = null;
 
 let con = mysql.createConnection({
+
     host: config.db.host,
     user: config.db.username,
     password: config.db.password,
     database: config.db.database
+
 });
 
 con.connect(function(err) {
+
     if (err) {
         console.error("[" + getDate() + "] " + err);
         process.exit();
         return;
     }
+     
     log("Info", 'MYSQL connected');
+
 });
 
 client.on('ready', () => {
@@ -123,11 +128,6 @@ client.on('message', async message => {
     config.commands.forEach(element => {
         if (command == element.command) {
 
-            if (!hasUpdatesRole(message.member)) {
-                message.reply("You don't have permission to use this command");
-                return;
-            }
-
             commandChannel.send(element.reminder);
             messageChannel.send(element.message);
             insertShoutboxMessage(element.message);
@@ -139,14 +139,19 @@ client.on('message', async message => {
 });
 
 function hasUpdatesRole(member) {
+
     return member.roles.some(r=>[config.updates_role].includes(r.name));
+
 }
 
 function getDate() {
+
     return new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+
 }
 
 function insertShoutboxMessage(message) {
+
     const escapedMessage = con.escape(message);
     let sql = "INSERT INTO `" + config.db.table + "` (user, chat, time) VALUES (8761, " + escapedMessage + ", " + Math.floor(new Date() / 1000) + ")";
     con.query(sql, function (err, result) {
@@ -155,12 +160,15 @@ function insertShoutboxMessage(message) {
             return;
         }
     });
+    
 }
 
 function log(type, message) {
+
     if (config.logging) {
         console.log("[" + getDate() + "] " + type + ": " + message)
     }
+
 };
 
 client.login(config.bot_token);
