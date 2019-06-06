@@ -30,7 +30,7 @@ con.connect(function(err) {
 });
 
 client.on('ready', () => {
-
+    
     client.user.setActivity('for updates', { type: 'WATCHING' })
 
     guild = client.guilds.first();
@@ -130,8 +130,8 @@ client.on('message', async message => {
         if (command == element.command) {
             commandChannel.send(element.reminder);
             messageChannel.send(element.message).then(function (message) {
-                message.react(message.guild.emojis.get('586061148236021780'));
-              });
+                message.react('🤠');
+            });
             insertShoutboxMessage(element.shoutbox);
             log("Info", `${message.member.user.tag} used the !${element.command} command`);
             return;
