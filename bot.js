@@ -8,7 +8,7 @@ let messageChannel = null;
 let commandChannel = null;
 let updatesRoles = null;
 
-var con = mysql.createConnection({
+let con = mysql.createConnection({
     host: config.db.host,
     user: config.db.username,
     password: config.db.password,
@@ -25,28 +25,34 @@ con.connect(function(err) {
 });
 
 client.on('ready', () => {
-    log("Info", `${client.user.tag} connected`);
+
     client.user.setActivity('for commands', { type: 'WATCHING' })
+
     guild = client.guilds.first();
     if (guild == null) {
         log("Error", "Unable to find guild");
         process.exit();
     }
+
     messageChannel = guild.channels.find(x => x.name === config.message_channel);
     if (messageChannel == null) {
         log("Error", "Unable to find the message channel");
         process.exit();
     }
+
     commandChannel = guild.channels.find(x => x.name === config.command_channel);
     if (commandChannel == null) {
         log("Error", "Unable to find the command channel");
         process.exit();
     }
+
     updatesRoles = guild.roles.find(x => x.name === config.updates_role);
     if (commandChannel == null) {
         log("Error", "Unable to find the updates role");
         process.exit();
     }
+
+    log("Info", `${client.user.tag} connected`);
 });
 
 client.on('message', async message => {
