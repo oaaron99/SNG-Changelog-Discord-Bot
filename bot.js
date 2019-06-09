@@ -122,6 +122,15 @@ client.on('message', async message => {
         commandList = commandList.substring(0, commandList.length - 2);
         commandChannel.send(commandList);
 
+        config.mention_channels.forEach(element => {
+            let channel = guild.channels.find(x => x.name === element);
+            if (channel != null) {
+                channel.send(messageChannel).then(function (message) {
+                    message.react('🤠');
+                });
+            }
+        });
+
         log("Info", `${message.member.user.tag} used the !commands command`);
         return;
     }
