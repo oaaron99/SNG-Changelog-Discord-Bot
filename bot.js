@@ -164,7 +164,7 @@ function getDate() {
 function insertShoutboxMessage(message) {
 
     const escapedMessage = con.escape(message);
-    let sql = "INSERT INTO `" + config.db.table + "` (user, chat, time) VALUES (8761, " + escapedMessage + ", " + Math.floor(new Date() / 1000) + ")";
+    let sql = "INSERT INTO `" + config.db.table + "` (chat_member_id, chat_content, chat_time, chat_room) VALUES (8761, " + escapedMessage + ", " + Math.floor(new Date() / 1000) + ", 1)";
     con.query(sql, function (err, result) {
         if (err) {
             log("Error", "Failed to submit shoutbox message " + err);
